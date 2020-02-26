@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 
 // ROUTES
-const STOCK_ROUTE = require('@routes/stock');
+const USERS_ROUTE = require('@routes/users');
 
 // MONGODB CONFIG. ---------------------------- START
 mongoose
@@ -25,7 +25,7 @@ mongoose
 
 server.use(express.json());
 
-server.use('/', STOCK_ROUTE);
+server.use('/api', [USERS_ROUTE]);
 
 server.listen(PORT, () => {
 	console.log('Server is running on PORT:', PORT);

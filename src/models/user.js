@@ -1,19 +1,24 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model(
-	'CookingTools',
+	'Users',
 	new mongoose.Schema({
-		name: {
+		username: {
 			type: String,
 			required: true
 		},
-		classification: {
+		email: {
 			type: String,
 			require: true
 		},
-		description: {
+		password: {
 			type: String,
-			require: false
+			minlength: 6,
+			require: true
+		},
+		active: {
+			type: Boolean,
+			require: true
 		}
 	})
 );
