@@ -1,6 +1,7 @@
+const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
 
-module.exports = mongoose.model(
+const User = mongoose.model(
 	'Users',
 	new mongoose.Schema({
 		username: {
@@ -18,8 +19,9 @@ module.exports = mongoose.model(
 		},
 		password: {
 			type: String,
+			require: true,
 			minlength: 6,
-			require: true
+			maxlength: 255
 		},
 		active: {
 			type: Boolean,
@@ -27,3 +29,26 @@ module.exports = mongoose.model(
 		}
 	})
 );
+
+function validateUser(user) {
+	const schema = Joi.object({
+		username: Joi.string()
+			.min(6)
+			.max(50)
+			.required(),
+		email: Joi.string()
+			.min(6)
+			.max(255)
+			.required()
+			.email(),
+		password: Joi.string()
+			.min(6)
+			.max(255)
+			.required()
+	});
+
+	return schema.validate(user);
+}
+
+exports.User = User;
+exports.validate = validateUser;
