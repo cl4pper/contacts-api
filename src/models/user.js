@@ -5,11 +5,16 @@ module.exports = mongoose.model(
 	new mongoose.Schema({
 		username: {
 			type: String,
-			required: true
+			required: true,
+			minlength: 6,
+			maxlength: 50
 		},
 		email: {
 			type: String,
-			require: true
+			require: true,
+			minlength: 6,
+			maxlength: 255,
+			unique: true
 		},
 		password: {
 			type: String,
