@@ -3,9 +3,11 @@ require('dotenv').config({
 	path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env'
 });
 
+const { Ports } = require('@constants');
 const express = require('express');
 const server = express();
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 
 // LOCAL VARIABLES
 const PORT = 3000;
@@ -28,5 +30,5 @@ server.use(express.json());
 server.use('/api', [USERS_ROUTE]);
 
 server.listen(PORT, () => {
-	console.log('Server is running on PORT:', PORT);
+	console.log('Server is running on PORT:', Ports.localPort);
 });

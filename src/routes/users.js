@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { User, validate } = require('@models/user');
-
-// ROUTE VARIABLES
-const signupRoute = require('@constants').signupRoute;
+const { Routes } = require('@constants');
 
 // USER SIGN UP
-router.post(signupRoute, async (req, res) => {
+router.post(Routes.signupRoute, async (req, res) => {
 	const { error } = validate(req.body);
 	if (error) {
 		console.log(error);
