@@ -47,7 +47,8 @@ function validateUser(user) {
 			.required()
 	});
 
-	return schema.validate(user);
+	// return schema.validate(user);
+	return Joi.assert(user, schema);
 }
 
 exports.User = User;
