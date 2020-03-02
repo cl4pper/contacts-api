@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const _ = require('lodash');
+const bcrypt = require('bcrypt');
 const { User, validate } = require('@models/user');
 const { Routes } = require('@constants');
 
@@ -39,10 +41,13 @@ router.post(Routes.signupRoute, async (req, res) => {
 	});
 	if (user) return res.status(400).send('Email already registered!!!');
 
+	// TURN PASSWORD INTO A HASH
 	user = new User({
 		active: true,
 		...req.body
 	});
+	const salt = await bcrypt.genSalt(10);
+	user.password = await bcrypt.hash(user.password, salt);
 
 	await user.save();
 	res.send(user); // feedback for saved user
