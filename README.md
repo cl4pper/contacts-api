@@ -1,6 +1,8 @@
-# recipers-api
+# contacts-api
 
 Engineered by [node-plate](https://github.com/cl4pper/node-plate).
+
+OBS: The frontend will be released as soon the app layout(design) get done.
 
 ## Instructions:
 
