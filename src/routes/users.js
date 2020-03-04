@@ -55,6 +55,8 @@ router.post(Routes.signupRoute, async (req, res) => {
 	// TURN PASSWORD INTO A HASH
 	user = new User({
 		active: true,
+		createdAt: new Date(),
+		updatedAt: new Date(),
 		...req.body
 	});
 	const salt = await bcrypt.genSalt(10);

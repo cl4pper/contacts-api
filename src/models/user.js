@@ -11,15 +11,9 @@ const User = mongoose.model(
 		username: {
 			type: String,
 			required: true,
+			unique: true,
 			minlength: minLength,
 			maxlength: 50
-		},
-		email: {
-			type: String,
-			require: true,
-			minlength: minLength,
-			maxlength: 255,
-			unique: true
 		},
 		password: {
 			type: String,
@@ -27,10 +21,31 @@ const User = mongoose.model(
 			minlength: 6,
 			maxlength: 255
 		},
+		email: {
+			type: String,
+			require: true,
+			unique: true,
+			minlength: minLength,
+			maxlength: 255
+		},
+		phonenumber: {
+			type: String,
+			required: true,
+			minlength: 9
+		},
+		info: {
+			type: String,
+			maxlength: 255
+		},
 		active: {
 			type: Boolean,
 			require: true
-		}
+		},
+		friends: [],
+		requests: [],
+		photo: String,
+		createdAt: String,
+		updatedAt: String
 	})
 );
 
@@ -46,6 +61,7 @@ function validateSignup(user) {
 			.max(255)
 			.required()
 			.email(),
+		phonenumber: Joi.string().min(9),
 		password: Joi.string()
 			.min(minPasswordLength)
 			.max(255)
