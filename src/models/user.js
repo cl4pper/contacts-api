@@ -34,7 +34,8 @@ const User = mongoose.model(
 	})
 );
 
-function validateUser(user) {
+// VALIDATE REQUEST BODY FOR SIGN UP
+function validateSignup(user) {
 	const schema = Joi.object({
 		username: Joi.string()
 			.min(minLength)
@@ -55,5 +56,22 @@ function validateUser(user) {
 	return Joi.assert(user, schema);
 }
 
+// VALIDATE SIGN UP REQUEST BODY
+function validateSignin(user) {
+	const schema = Joi.object({
+		username: Joi.string()
+			.min(minLength)
+			.max(50)
+			.required(),
+		password: Joi.string()
+			.min(minPasswordLength)
+			.max(255)
+			.required()
+	});
+
+	return Joi.assert(user, schema);
+}
+
 exports.User = User;
-exports.validate = validateUser;
+exports.validateSignup = validateSignup;
+exports.validateSignin = validateSignin;
