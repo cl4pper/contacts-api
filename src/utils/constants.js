@@ -1,6 +1,7 @@
 // ROUTES VARIABLES
 const RoutesName = {
 	getUsers: '/users',
+	deleteUsers: '/users/clear',
 	signupRoute: '/signup',
 	signinRoute: '/signin'
 };
