@@ -41,8 +41,6 @@ const User = mongoose.model(
 			type: Boolean,
 			require: true
 		},
-		friends: [],
-		requests: [],
 		photo: String,
 		createdAt: String,
 		updatedAt: String
