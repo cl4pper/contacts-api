@@ -87,10 +87,20 @@ router.post(Routes.signinRoute, async (req, res) => {
 		});
 		if (!user) return res.status(400).send('Invalid email or password.');
 
+		// CHECKS IF THE PASSWORD IS CORRECT FOR THE RESPECTIVE USER
 		const validPassword = await bcrypt.compare(req.body.password, user.password);
 		if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-		const userToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
+		const userToken = jwt.sign(
+			{
+				_id: user._id,
+				active: user.active,
+				username: user.username,
+				email: user.email,
+				phonenumber: user.phonenumber
+			},
+			process.env.JWT_PRIVATE_KEY
+		);
 
 		res.send(userToken);
 	} catch (err) {
