@@ -1,6 +1,10 @@
+require('dotenv').config({
+	path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env'
+});
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { User, validateSignup, validateSignin } = require('@models/user');
 const { Routes } = require('@constants');
 
@@ -83,10 +87,22 @@ router.post(Routes.signinRoute, async (req, res) => {
 		});
 		if (!user) return res.status(400).send('Invalid email or password.');
 
+		// CHECKS IF THE PASSWORD IS CORRECT FOR THE RESPECTIVE USER
 		const validPassword = await bcrypt.compare(req.body.password, user.password);
 		if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-		res.send(user);
+		const userToken = jwt.sign(
+			{
+				_id: user._id,
+				active: user.active,
+				username: user.username,
+				email: user.email,
+				phonenumber: user.phonenumber
+			},
+			process.env.JWT_PRIVATE_KEY
+		);
+
+		res.send(userToken);
 	} catch (err) {
 		res.status(500).send('Something went wrong!');
 	}
