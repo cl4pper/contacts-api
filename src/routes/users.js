@@ -1,3 +1,6 @@
+require('dotenv').config({
+	path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env'
+});
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -87,7 +90,7 @@ router.post(Routes.signinRoute, async (req, res) => {
 		const validPassword = await bcrypt.compare(req.body.password, user.password);
 		if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-		const userToken = jwt.sign({ _id: user._id }, 'jwtPrivateKey');
+		const userToken = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
 
 		res.send(userToken);
 	} catch (err) {
