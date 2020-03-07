@@ -6,7 +6,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { User, validateSignup, validateSignin } = require('@models/user');
-const { Routes } = require('@constants');
+const { Routes } = require('@utils/constants');
 
 // USER SIGN UP
 router.post(Routes.signupRoute, async (req, res) => {
