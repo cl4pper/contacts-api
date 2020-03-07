@@ -14,6 +14,7 @@ const PORT = 3000;
 
 // ROUTES
 const USERS_ROUTE = require('@routes/users');
+const AUTH_ROUTE = require('@routes/auth');
 
 // MONGODB CONFIG. ---------------------------- START
 mongoose
@@ -22,12 +23,12 @@ mongoose
 		useUnifiedTopology: true
 	})
 	.then(() => console.log('Connected to mongodb...'))
-	.catch(err => console.error('NOT connect to mongobd!', err));
+	.catch(err => console.error('NOT connect to mongodb!', err));
 // MONGODB CONFIG. ---------------------------- END
 
 server.use(express.json());
 
-server.use('/api', [USERS_ROUTE]);
+server.use('/api', [AUTH_ROUTE, USERS_ROUTE]);
 
 server.listen(PORT, () => {
 	console.log('Server is running on PORT:', Ports.localPort);
