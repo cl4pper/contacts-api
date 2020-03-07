@@ -3,7 +3,7 @@ require('dotenv').config({
 	path: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env'
 });
 
-const { Ports } = require('@constants');
+const { Ports } = require('@utils/constants');
 const express = require('express');
 const server = express();
 const mongoose = require('mongoose');

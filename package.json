@@ -30,6 +30,6 @@
 	"_moduleAliases": {
 		"@routes": "./src/routes",
 		"@models": "./src/models",
-		"@constants": "./src/utils/constants.js"
+		"@utils": "./src/utils"
 	}
 }
