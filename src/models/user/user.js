@@ -42,8 +42,14 @@ const User = mongoose.model(
 			require: true
 		},
 		photo: String,
-		createdAt: String,
-		updatedAt: String
+		createdAt: {
+			type: Date,
+			required: true
+		},
+		updatedAt: {
+			type: Date,
+			required: true
+		}
 	})
 );
 
@@ -86,6 +92,12 @@ function validateSignin(user) {
 	return Joi.assert(user, schema);
 }
 
-exports.User = User;
-exports.validateSignup = validateSignup;
-exports.validateSignin = validateSignin;
+// exports.User = User;
+// exports.validateSignup = validateSignup;
+// exports.validateSignin = validateSignin;
+
+module.exports = {
+	User,
+	validateSignup,
+	validateSignin
+};
