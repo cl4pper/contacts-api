@@ -1,9 +1,9 @@
 // THIS METHOD CREATE A DEFAULT RETURN VALUE FOR MODULE REQUESTS
-function setDefaultReturn(status, value, errors = '') {
+function setDefaultReturn({ status, data, error }) {
 	const defaultReturn = {
 		status: status,
-		data: { ...value },
-		errors: []
+		data: { ...data },
+		error: error
 	};
 
 	return defaultReturn;
