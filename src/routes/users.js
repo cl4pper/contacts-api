@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('@models/user');
-const { Routes } = require('@utils/constants');
-const { defaultReturn } = require('@utils/methods');
+const User = require('@models').UserModel;
+const Routes = require('@utils').RoutesName;
+const defaultReturn = require('@utils').defaultReturn;
 
 // GET USERS
 router.get(Routes.getUsers, async (req, res) => {

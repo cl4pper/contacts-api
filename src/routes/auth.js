@@ -5,8 +5,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User, validateSignup, validateSignin } = require('@models/user');
-const { Routes } = require('@utils/constants');
+const User = require('@models').UserModel;
+const validateSignup = require('@models').validateSignup;
+const validateSignin = require('@models').validateSignin;
+const Routes = require('@utils').RoutesName;
 
 // USER SIGN UP
 router.post(Routes.signupRoute, async (req, res) => {

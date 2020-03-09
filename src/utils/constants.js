@@ -10,5 +10,7 @@ const Ports = {
 	localPort: 3000
 };
 
-exports.Ports = Ports;
-exports.Routes = RoutesName;
+module.exports = {
+	Ports,
+	RoutesName
+};
