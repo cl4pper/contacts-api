@@ -18,7 +18,7 @@ const AUTH_ROUTE = require('@routes/auth');
 
 // MONGODB CONFIG. ---------------------------- START
 mongoose
-	.connect(process.env.DATABASE_URL, {
+	.connect('mongodb://mongo:27017/node-api', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	})

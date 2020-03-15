@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api:
+    container_name: node-api
+    build: .
+    command: npm run start
+    ports:
+      - '80:3000'
+    volumes:
+      - .:/usr/api
+    links:
+      - mongodb
+  mongodb:
+    container_name: mongo-db
+    image: mongo
+    ports:
+      - '27017:27017'
